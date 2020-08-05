@@ -36,9 +36,7 @@
         <div class="container">Вы проиграли</div>
       </div>
 
-      <audio ref="audio" id="audio" autoplay>
-<!--        <source v-if="audio_number" :src="`http://www.kellyking.me/projects/simon/sounds/${audio_number}.mp3`">-->
-      </audio>
+      <audio ref="audio" v-if="audio_number" id="audio" autoplay :src="`http://www.kellyking.me/projects/simon/sounds/${audio_number}.mp3`"></audio>
     </div>
   </div>
 </template>
@@ -77,13 +75,6 @@
             this.selected_level = this.levels[0];
         },
         methods: {
-            addVoice(index) {
-                if (this.$refs.audio[this.source_audio]) {
-                    this.$refs.audio.removeChild(this.source_audio);
-                }
-                this.source_audio.setAttribute('src', `http://www.kellyking.me/projects/simon/sounds/${index + 1}.mp3`);
-                this.$refs.audio.append(this.source_audio);
-            },
             addRandomElementInItems() {
                 return new Promise(resolve => {
                     let random_number = Math.abs(Math.round(-0.5 + Math.random() * (4)));
@@ -102,13 +93,12 @@
                 return new Promise(resolve => {
                     let pizza_item = this.$refs[`pizza_item_${index}`][0];
                     pizza_item.classList.add('dedicated');
-                    this.addVoice(index);
-                    // this.audio_number = index + 1;
+                    this.audio_number = index + 1;
                     setTimeout(() => {
                         pizza_item.classList.remove('dedicated');
                     }, 100);
                     setTimeout(() => {
-                        // this.audio_number = '';
+                        this.audio_number = '';
                         resolve();
                     }, this.selected_level.period)
                 })
@@ -117,11 +107,10 @@
                 this.count = 0;
                 if (this.disable_pizza) return;
                 this.disable_pizza = true;
-                this.addVoice(index);
-                // this.audio_number = index + 1;
-                // setTimeout(() => {
-                //     this.audio_number = '';
-                // }, 700)
+                this.audio_number = index + 1;
+                setTimeout(() => {
+                    this.audio_number = '';
+                }, 700)
                 this.selected_items.push(index);
                 await this.checkEqualElements()
                     .then(async () => {
