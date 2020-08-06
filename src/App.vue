@@ -21,6 +21,7 @@ export default {
 
   .simon-game-wrapper {
     padding: 50px;
+    max-width: 700px;
   }
 
   * {
