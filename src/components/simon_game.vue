@@ -64,8 +64,7 @@
                 selected_level: {},
                 notification: false,
                 game: false,
-                count: 0,
-                source_audio: document.createElement('source')
+                count: 0
             }
         },
         mounted() {
