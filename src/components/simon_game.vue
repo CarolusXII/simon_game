@@ -39,6 +39,7 @@
 </template>
 
 <script>
+
     export default {
         data() {
             return {
@@ -74,7 +75,7 @@
             addAudioSource(audio_number) {
                 let element = `
                   <audio autoplay>
-                    <source src="http://www.kellyking.me/projects/simon/sounds/${audio_number}.mp3">
+                    <source src="sounds/${audio_number}.mp3">
                   </audio>
                 `;
                 this.$refs.audio.innerHTML = element;
