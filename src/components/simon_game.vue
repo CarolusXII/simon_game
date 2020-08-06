@@ -182,7 +182,6 @@
         .simon-game__item {
           width: 50%;
           height: 50%;
-          cursor: pointer;
           position: relative;
           overflow: hidden;
           transition: 250ms;
@@ -211,6 +210,7 @@
       .simon-game__pizza.active {
         .simon-game__item:hover {
           opacity: .8;
+          cursor: pointer;
         }
         .simon-game__item:active {
           opacity: .75;
